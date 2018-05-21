@@ -567,7 +567,7 @@ static std::wstring convertPathToWsl(const std::wstring &path) {
         const auto drive = lowerDrive(path[0]);
         if (drive && path[1] == L':' && isSlash(path[2])) {
             // Acceptable path.
-            std::wstring ret = L"/mnt/";
+            std::wstring ret = L"/";
             ret.push_back(drive);
             ret.append(path.substr(2));
             for (wchar_t &ch : ret) {
@@ -580,7 +580,7 @@ static std::wstring convertPathToWsl(const std::wstring &path) {
     }
     fatal(
         "error: the backend program '%s' must be located on a "
-        "letter drive so WSL can access it with a /mnt/<LTR> path\n",
+        "letter drive so WSL can access it with a /<LTR> path\n",
         wcsToMbs(path).c_str());
 }
 
