@@ -1129,11 +1129,9 @@ int main(int argc, char *argv[]) {
 
     // Prepare the backend command line.
     std::wstring bashCmdLine;
-    bashCmdLine.append(L"$(if [ \"$(command -v wslpath)\" ]; then wslpath");
-    appendBashArg(bashCmdLine, backendPathWin);
-    bashCmdLine.append(L" || echo false; else echo");
-    appendBashArg(bashCmdLine, backendPathWsl);
-    bashCmdLine.append(L"; fi)");
+    bashCmdLine.append(L"\"");
+    bashCmdLine.append(backendPathWsl);
+    bashCmdLine.append(L"\"");
 
     if (debugFork) {
         appendBashArg(bashCmdLine, L"--debug-fork");
