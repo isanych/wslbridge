@@ -1001,6 +1001,13 @@ int main(int argc, char *argv[]) {
     enum class TtyRequest { Auto, Yes, No, Force } ttyRequest = TtyRequest::Auto;
     enum class LoginMode { Auto, Yes, No } loginMode = LoginMode::Auto;
 
+    {
+        const char *value = getenv("DISTROGUID");
+        if (value != nullptr) {
+            distroGuid = canonicalGuid(value);
+        }
+    }
+
     int debugFork = 0;
     int c = 0;
     if (argv[0][0] == '-') {
